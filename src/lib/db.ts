@@ -17,8 +17,8 @@ export interface ArticleTable {
   is_photo: number;
   is_film: number;
   external_link: string;
-  created_at: ColumnType<Date, string | undefined, never>;
-  updated_at: ColumnType<Date, string | undefined, never>;
+  created_at: number;
+  updated_at: number;
 }
 
 // Keys of this interface are table names.

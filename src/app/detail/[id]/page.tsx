@@ -1,11 +1,27 @@
 import { db } from '@/lib/db';
 import dayjs from 'dayjs';
 import Link from 'next/link';
+import { Metadata, ResolvingMetadata } from 'next/types';
+
+type Props = {
+  params: { id: string };
+}
+
+export async function generateMetadata(
+  { params }: Props,
+  _parent: ResolvingMetadata
+): Promise<Metadata> {
+  const result = await db.selectFrom('article').selectAll().where('id', '=', Number(params.id)).execute();
+  const articleDetail = result[0];
+  return {
+    title: articleDetail.title,
+  }
+}
 
 /**
- * 文章列表
+ * 文章详情
  */
-export default async function Detail({ params }: { params: { id: string } }) {
+export default async function Detail({ params }: Props) {
   const result = await db.selectFrom('article').selectAll().where('id', '=', Number(params.id)).execute();
   const articleDetail = result[0];
   return (<article>
