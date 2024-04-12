@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   title: '赵的拇指',
@@ -32,6 +30,7 @@ export default function RootLayout({
       <body>
         <div id="content">{children}</div>
       </body>
+      <SpeedInsights />
     </html>
   );
 }

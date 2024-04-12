@@ -12,6 +12,7 @@
   "dependencies": {
     "@vercel/postgres": "^0.8.0",
     "@vercel/postgres-kysely": "^0.8.0",
+    "@vercel/speed-insights": "^1.0.10",
     "dayjs": "^1.11.10",
     "kysely": "^0.27.3",
     "next": "14.1.4",
