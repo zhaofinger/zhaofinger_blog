@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import Header from './components/header';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   title: '赵的拇指',
@@ -31,6 +31,7 @@ export default function RootLayout({
       <body>
         <div id="content">{children}</div>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
