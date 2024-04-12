@@ -1,5 +1,3 @@
-import './page.css';
-
 export default async function Index() {
   return (
     <div id="index">

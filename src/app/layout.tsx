@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import Header from './components/header';
 
 export const metadata: Metadata = {
   title: '赵的拇指',
