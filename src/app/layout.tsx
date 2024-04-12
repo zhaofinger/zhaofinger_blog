@@ -29,8 +29,8 @@ export default function RootLayout({
     <html>
       <body>
         <div id="content">{children}</div>
+        <SpeedInsights />
       </body>
-      <SpeedInsights />
     </html>
   );
 }
