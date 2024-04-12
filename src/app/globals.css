@@ -213,3 +213,16 @@ a.active::after {
 .shadow {
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
 }
+
+
+#content {
+  width: 600px;
+  min-height: 300px;
+  margin: 60px auto 40px auto;
+}
+
+@media (max-width: 600px) {
+  #content {
+    width: 90%;
+  }
+}

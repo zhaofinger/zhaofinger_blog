@@ -1,8 +1,8 @@
-
+import './page.css';
 
 export default async function Index() {
   return (
-      <div id='index'>
+    <div id='index'>
       <div className='index-wrapper'>
         <h1>赵的拇指</h1>
         <div className='my-label'>代码/摄影/跑步/电影/篮球/设计/散打/一切有趣的/...</div>
