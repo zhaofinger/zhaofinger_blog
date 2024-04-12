@@ -23,7 +23,7 @@ export interface ArticleTable {
 
 // Keys of this interface are table names.
 export interface Database {
-  article: ArticleTable
+  article: ArticleTable;
 }
 
 export const db = createKysely<Database>();

@@ -1,14 +1,25 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "赵的拇指",
-  description: "赵的拇指博客",
-  keywords: ['赵的拇指', '博客', '代码', '前端', '前端开发', 'JavaScript', 'CSS', '摄影', '散打', '跑步', '设计'],
-
+  title: '赵的拇指',
+  description: '赵的拇指博客',
+  keywords: [
+    '赵的拇指',
+    '博客',
+    '代码',
+    '前端',
+    '前端开发',
+    'JavaScript',
+    'CSS',
+    '摄影',
+    '散打',
+    '跑步',
+    '设计',
+  ],
 };
 
 export default function RootLayout({
@@ -19,9 +30,7 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <div id='content'>
-          {children}
-        </div>
+        <div id="content">{children}</div>
       </body>
     </html>
   );
