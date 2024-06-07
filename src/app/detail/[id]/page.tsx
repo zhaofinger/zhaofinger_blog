@@ -5,6 +5,9 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 import { Metadata, ResolvingMetadata } from 'next/types';
 
+import './markdown.css';
+import './prism.css';
+
 type Props = {
   params: { id: string };
 };
@@ -36,33 +39,42 @@ export default async function Detail({ params }: Props) {
   const articleDetail = result[0];
   return (
     <>
-      <Header />
-      <article>
+      <article id="detail">
         <header>
-          <h2>{articleDetail.title}</h2>
-          <div>
-            <span className="mr-2">By</span>
-            <Link className="mr-2" href="/">
+          <h2 className="article-title">{articleDetail.title}</h2>
+          <div className="article-meta">
+            <span>By</span>
+            <Link className="author" href="/">
               赵的拇指
             </Link>
-            <span className="mr-2">At</span>
-            <span className="mr-2">
+            <span>At</span>
+            <span className="datetime">
               {dayjs(+articleDetail.created_at).format('YYYY-MM-DD')}
             </span>
-            <span className="mr-2">In</span>
-            <Link
-              className="mr-2"
-              href="/article/type/{{ articleDetail.type }}"
-            >
-              {articleDetail.type}
-            </Link>
-            <span className="mr-2">Views</span>
-            <span>{articleDetail.view_count}</span>
+            <span>Views</span>
+            <span className="views">{articleDetail.view_count}</span>
           </div>
         </header>
-        <div
-          dangerouslySetInnerHTML={{ __html: articleDetail.content_render }}
-        />
+
+        {articleDetail.is_photo ? (
+          <div className="article-content photo-content">
+            <p className="photo-desc">{articleDetail.desc}</p>
+            {articleDetail.content_render.split('||').map((imgItem) => (
+              <img key={imgItem} src={imgItem} />
+            ))}
+          </div>
+        ) : (
+          <div
+            className="article-content markdown-body"
+            dangerouslySetInnerHTML={{ __html: articleDetail.content_render }}
+          />
+        )}
+        <ul className="article-label-list">
+          <span className="label-title">标签：</span>
+          {articleDetail.label.split(' ').map((labelItem) => (
+            <li key={labelItem}>#{labelItem}</li>
+          ))}
+        </ul>
       </article>
       <Footer />
     </>
