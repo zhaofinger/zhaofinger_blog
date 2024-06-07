@@ -12,6 +12,7 @@ export default async function Article() {
     .selectFrom('article')
     .selectAll()
     .orderBy('created_at desc')
+    .where('is_delete', '=', 0)
     .where('is_publish', '=', 1)
     .where('is_film', '=', 0)
     .execute();
