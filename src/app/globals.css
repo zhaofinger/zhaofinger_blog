@@ -555,6 +555,7 @@ a.active::after {
 /* .film-list {} */
 #film {
   position: relative;
+  margin-top: 20px;
 }
 .time-line {
   position: absolute;
@@ -575,7 +576,7 @@ a.active::after {
 .film-item .time::before {
   content: '';
   position: absolute;
-  right: -8px;
+  right: -5px;
   top: 2px;
   width: 8px;
   height: 8px;

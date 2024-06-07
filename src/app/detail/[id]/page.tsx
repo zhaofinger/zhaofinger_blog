@@ -7,6 +7,7 @@ import { Metadata, ResolvingMetadata } from 'next/types';
 
 import './markdown.css';
 import './prism.css';
+import { prefixImgUrl } from '@/lib/img';
 
 type Props = {
   params: { id: string };
@@ -60,7 +61,7 @@ export default async function Detail({ params }: Props) {
           <div className="article-content photo-content">
             <p className="photo-desc">{articleDetail.desc}</p>
             {articleDetail.content_render.split('||').map((imgItem) => (
-              <img key={imgItem} src={imgItem} />
+              <img key={imgItem} src={prefixImgUrl(imgItem)} loading="lazy" />
             ))}
           </div>
         ) : (

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Header from '../components/header';
 import dayjs from 'dayjs';
 import Footer from '../components/footer';
+import { prefixImgUrl } from '@/lib/img';
 
 /**
  * 文章列表
@@ -30,16 +31,10 @@ export default async function Article() {
               </span>
               <img
                 className="cover"
-                src={filmItem.cover}
+                src={prefixImgUrl(filmItem.cover)}
                 alt={filmItem.title}
+                loading="lazy"
               />
-              <div
-                className="cover"
-                data-url="{ filmItem.cover }"
-                style={{
-                  background: `url(${filmItem.cover}) center center no-repeat /cover`,
-                }}
-              ></div>
               <div className="desc">
                 <h2>{filmItem.title}</h2>
                 <p className="comment">{filmItem.desc}</p>
