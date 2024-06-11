@@ -7,6 +7,7 @@ import { Metadata, ResolvingMetadata } from 'next/types';
 
 import './markdown.css';
 import './prism.css';
+import './page.css';
 import { prefixImgUrl } from '@/lib/img';
 
 type Props = {
