@@ -531,6 +531,23 @@ a.active::after {
 .photo-list .photo-item .img-wrapper {
   width: 100%;
   height: 160px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.photo-list .photo-item .img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.photo-list .photo-item:hover .img-wrapper img {
+  transform: scale(1.05);
+}
+.photo-list .photo-item a {
+  display: block;
+}
+.photo-list .photo-item a::before {
+  content: none;
 }
 
 /* type */
