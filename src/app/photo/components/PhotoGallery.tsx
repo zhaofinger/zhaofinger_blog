@@ -31,17 +31,12 @@ interface PhotoCardProps {
 
 // Masonry grid item component
 function PhotoCard({ photo, onClick, columnWidth }: PhotoCardProps) {
-  const [aspectRatio, setAspectRatio] = useState<number>(1);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Calculate aspect ratio when image loads
-  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
-    setAspectRatio(img.naturalWidth / img.naturalHeight);
-    setIsLoaded(true);
-  };
+  // Fixed 16:9 aspect ratio
+  const aspectRatio = 16 / 9;
 
-  // Calculate height based on aspect ratio
+  // Calculate height based on fixed aspect ratio
   const height = Math.round(columnWidth / aspectRatio);
 
   return (
@@ -62,7 +57,8 @@ function PhotoCard({ photo, onClick, columnWidth }: PhotoCardProps) {
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           loading="lazy"
-          onLoad={handleImageLoad}
+          style={{ aspectRatio: '16/9' }}
+          onLoad={() => setIsLoaded(true)}
         />
 
         {/* Loading placeholder */}
@@ -236,6 +232,7 @@ function Lightbox({
           className={`max-w-full max-h-[85vh] object-contain rounded-lg ${
             isLoading ? 'opacity-0' : 'opacity-100'
           }`}
+          style={{ aspectRatio: '16/9', objectFit: 'contain' }}
           onLoad={() => setIsLoading(false)}
         />
 
@@ -276,6 +273,7 @@ function Lightbox({
                   src={prefixImgUrl(img)}
                   alt=""
                   className="w-full h-full object-cover"
+                  style={{ aspectRatio: '16/9' }}
                 />
               </button>
             ))}
@@ -357,8 +355,9 @@ export default function PhotoGalleryClient({ photos }: PhotoGalleryClientProps) 
       // Find shortest column
       const shortestCol = colHeights.indexOf(Math.min(...colHeights));
       cols[shortestCol].push(photo);
-      // Approximate height (we'll refine this after images load)
-      colHeights[shortestCol] += 300;
+      // Fixed 16:9 aspect ratio height calculation
+      const imageHeight = columnWidth / (16 / 9);
+      colHeights[shortestCol] += imageHeight + 16; // image + gap
     });
 
     return cols;
