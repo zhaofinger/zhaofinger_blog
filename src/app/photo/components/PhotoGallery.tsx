@@ -7,10 +7,12 @@ import { prefixImgUrl } from '@/lib/img';
 export interface Photo {
   id: number;
   title: string;
-  cover: string;
   content_render: string;
   desc: string;
   created_at: number;
+  is_photo: number;
+  is_delete: number;
+  is_publish: number;
 }
 
 export interface PhotoItem {
@@ -301,14 +303,17 @@ export default function PhotoGalleryClient({ photos }: PhotoGalleryClientProps) 
     return photos.map((photo) => {
       const images = photo.content_render
         ? photo.content_render.split('||').filter(Boolean)
-        : [photo.cover];
+        : [];
+
+      // Use first image as cover
+      const cover = images[0] || '';
 
       return {
         id: photo.id,
         title: photo.title,
         desc: photo.desc,
-        cover: photo.cover,
-        images: images.length > 0 ? images : [photo.cover],
+        cover,
+        images: images.length > 0 ? images : [],
         createdAt: dayjs(photo.created_at).format('YYYY-MM-DD'),
         imageCount: images.length,
       };
